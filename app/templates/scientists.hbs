@@ -1,8 +1,43 @@
-{{page-title "Scientists"}}
-<h2>List of Scientists</h2>
+{{!-- We can start by just adding the h2 to see that the route will be rendered in the applications {{outlet}}
+We can then go into the route to provide some data to render --}}
 
+{{!-- Iteration 1 --}}
+{{page-title "Scientists"}}
+{{!-- <h2>List of Scientists</h2> --}}
+
+{{!-- Iteration 2 Adds --}}
+
+{{!-- 
 <ul>
   {{#each @model as |scientist|}}
     <li>{{scientist}}</li>
   {{/each}}
-</ul>
+</ul> 
+--}}
+
+{{!-- Here, we use the each helper to loop over each item in the array we provided from the model() hook. 
+Ember will render the block contained inside the {{#each}}...{{/each}} helper once for each item (each scientist in our case) in the array.
+The item (the scientist) that is being rendered currently will be made available in the scientist variable, as denoted by as |scientist| in the each helper.
+
+The end result is that there will be one <li> element corresponding to each scientist in the array inside the <ul> unordered list. --}}
+
+{{!-- However it would be better to have a reusable component to display multiple places without repeating ourselves. Lets use the CLI to generate a component.
+
+ember generate component people-list
+
+Lets check out the new component --}}
+
+{{!-- -------------------------------------- --}}
+
+{{!-- Iteration 3 --}}
+
+{{!-- We're going to tell our component:
+
+What title to use, via the @title argument.
+What array of people to use, via the @people argument. We'll provide this route's @model as the list of people. --}}
+
+{{!-- Let's replace all our old code with our new componentized version: --}}
+
+<PeopleList @title="List of Scientists" @people={{@model}} />
+
+{{!-- Lets make another route that uses the component with musicians. After that we will add interactions by modifying the PeopleList component--}}

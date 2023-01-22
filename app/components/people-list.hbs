@@ -1,0 +1,56 @@
+{{!-- Our component is called <PeopleList>, based on its name on the file system. Using pascal case--}}
+{{!-- Iteration 1 --}}
+
+{{!--  
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>{{person}}</li>
+  {{/each}}
+</ul>
+--}}
+
+{{!-- Note that we've changed the title from a hard-coded string ("List of Scientists") to {{@title}}.
+The @ indicates that @title is an argument that will be passed into the component, which makes it
+easier to reuse the same component in other parts of the app we are building.
+
+We've also renamed scientist to the more-generic person, decreasing the coupling of our component to where it's used.
+
+Our component is called <PeopleList>, based on its name on the file system. --}}
+
+{{!-- Lets go modify our scientists template --}}
+
+{{!-- -------------------------------------- --}}
+
+{{!-- Iteration 2 --}}
+
+{{!-- Lets modify our component making the li include a button rendered as the persons name --}}
+
+<h2>{{@title}}</h2>
+
+<ul>
+  {{#each @people as |person|}}
+    <li>
+      <button type="button" {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+    </li>
+  {{/each}}
+</ul>
+
+{{!-- In addition to the template, a component can also have a JavaScript file for this exact purpose.
+Go ahead and create a .js file with the same name and in the same directory as our template (app/components/people-list.js)
+
+Note: If you want this file created for you, you may pass the -gc flag when running the component generator.
+
+After creating the action in people-list.js we can change the above button from 
+<button type="button">{{person}}</button> 
+to 
+<button type="button" {{on 'click' this.showPerson}}>{{person}}</button>
+
+There is a problem with this though – if you tried this in the browser, you will quickly discover that clicking on the buttons will bring up an alert dialog that said "The person's name is [Object MouseEvent]!" – eek!
+
+The cause of this bug is that we wrote our action to take an argument – the person's name – and we forgot to pass it. The fix is easy enough:
+<button type="button" {{on 'click' (fn this.showPerson person)}}>{{person}}</button>
+
+Instead of passing the action to the on modifier directly, we used the fn helper to pass the person as an argument which our action expects.
+--}}

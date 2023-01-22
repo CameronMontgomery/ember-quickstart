@@ -1,7 +1,8 @@
-# quickstart
+# Ember.js Quick Start
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+A "hello world" application for building familiarity with Ember.js. It is based off the official documents quick start guide.
+You can find the guide at [Ember quickstart guide](https://guides.emberjs.com/release/getting-started/quick-start/).
+
 
 ## Prerequisites
 
@@ -12,11 +13,18 @@ You will need the following things properly installed on your computer.
 * [Ember CLI](https://cli.emberjs.com/release/)
 * [Google Chrome](https://google.com/chrome/)
 
-## Installation
+## Setting up a new ember application
+You can install Ember with a single command using npm
 
-* `git clone <repository-url>` this repository
-* `cd quickstart`
-* `npm install`
+```npm install -g ember-cli```
+
+Once you've installed Ember CLI via npm, you will have access to a new ember command in your terminal. You can use the ember new command to create a new application.
+
+```ember new ember-quickstart --lang en```
+
+The --lang en option sets the app's primary language to English to help improve accessibility
+
+Further comments of the steps to create the app can be found in the individual files. Start at ```templates/application.hbs```, the applications main template file.
 
 ## Running / Development
 
